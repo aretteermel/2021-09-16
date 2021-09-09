@@ -1,0 +1,17 @@
+http://localhost:8080/bankaccountcontroller/createaccount?accountnr=EE111&customerid=1
+
+http://localhost:8080/bankaccountcontroller/addcustomer?firstname=Maali&lastname=Urb
+
+ http://localhost:8080/bankaccountcontroller/getbalance?accountnr=EE111
+
+http://localhost:8080/bankaccountcontroller/depositmoney?accountnr=EE111&amount=100
+
+http://localhost:8080/bankaccountcontroller/withdrawmoney?accountnr=EE111&amount=100
+
+http://localhost:8080/bankaccountcontroller/transfermoney?fromaccount=EE111&toaccount=EE112&amount=10
+
+http://localhost:8080/bankaccountcontroller/updateaccountstatus?accountnr=EE111&status=unlocked
+
+http://localhost:8080/bankaccountcontroller/getcustomerallaccounts?id=2
+
+http://localhost:8080/bankaccountcontroller/gettransactionlog?accountnr=EE111

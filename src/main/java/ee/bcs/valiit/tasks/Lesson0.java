@@ -15,6 +15,14 @@ public class Lesson0 {
     //  Prindi välja a==b
     //  Prindi välja a==c, mis muutus???
     public static void excersie1(){
+        int a = 1;
+        int b = 1;
+        int c = 3;
+        System.out.println(a == b);
+        System.out.println(a == c);
+        a = c;
+        System.out.println(a == b);
+        System.out.println(a == c);
     }
 
     // TODO
@@ -23,6 +31,13 @@ public class Lesson0 {
     //  Tekita muutuja y2 = x2++, trüki välja nii x2 ja y2
     //  Analüüsi tulemusi
     public static void excersie2(){
+        int x1 = 10;
+        int x2 = 20;
+        int y1 = ++x1;
+        System.out.println("x1 = " + x1 + " y1 = " + y1);
+        int y2 = x2++;
+        System.out.println("x2 = " + x2 + " y2 = " + y2);
+        //analüüs: x1 ja x2 ei ole võrdsed, kuna ++ ees või ++ taga on erinev tehe
     }
 
     // TODO
@@ -33,6 +48,14 @@ public class Lesson0 {
     //  d = 21 % 3
     //  Prindi välja kõigi muutujate väärtused
     public static void excersie3(){
+        int a = 18 % 3;
+        int b = 19 % 3;
+        int c = 20 % 3;
+        int d = 21 % 3;
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
     }
 
 }

@@ -1,15 +1,34 @@
 package ee.bcs.valiit.tasks;
 
+import java.util.Arrays;
+
 public class Lesson2b {
 
     public static void main(String[] args) {
         // TODO siia saab kirjutada koodi testimiseks
+        System.out.println(Arrays.toString(reverseArray(new int[]{2, 5, 8, 3, 4, 1, 9})));
+        System.out.println(Arrays.toString(evenNumbers(4)));
+        System.out.println(min(new int[]{2, 4, 5, -2, -1}));
+        System.out.println(max(new int[]{2, 4, 5, -2, -1}));
+        System.out.println(sum(new int[]{2, 4, 5, -2, -1}));
+        multiplyTable(4, 3);
+        System.out.println(fibonacci(8));
+
     }
 
     // TODO loe funktsiooni sisendiks on täisarvude massiiv
     // TODO tagasta massiiv mille elemendid on vastupidises järiekorras
     public static int[] reverseArray(int[] inputArray) {
-        return new int[1];
+
+        for (int i = 0; i < inputArray.length / 2; i++) {
+            int helpNumber;
+            //System.out.println(Arrays.toString(inputArray));
+
+            helpNumber = inputArray[inputArray.length - (i + 1)];
+            inputArray[inputArray.length - (i + 1)] = inputArray[i];
+            inputArray[i] = helpNumber;
+        }
+        return inputArray;
     }
 
     // TODO tagasta massiiv mis sisaldab n esimest paaris arvu
@@ -17,22 +36,48 @@ public class Lesson2b {
     // Sisend 5
     // Väljund 2 4 6 8 10
     public static int[] evenNumbers(int n) {
-        return new int[1];
+        int[] array = new int[n];
+        //int j = 0;
+        for (int i = 1; i <= n * 2; i++) {
+            if (i % 2 == 0) {
+                // System.out.println(i);
+                array[i / 2 - 1] = i;
+                //j++;
+            }
+        }
+        return array;
     }
 
     // TODO, leia massiivi kõige väiksem element
-    public static int min(int[] x){
-        return 0;
+    public static int min(int[] x) {
+        //int minValue = x[0];
+        for (int i = 0; i < x.length; i++) {
+            if (x[i] < x[0]) {      // (x[i] < minValue)
+                x[0] = x[i];        // minValue = x[i];
+            }
+        }
+        return x[0];                // return minValue;
     }
 
     // TODO, leia massiivi kõige suurem element
-    public static int max(int[] x){
-        return 0;
+    public static int max(int[] x) {
+        int largest = Integer.MIN_VALUE;
+        for (int i = 0; i < x.length; i++) {        // System.out.println(max(new int[]{2, 4, 5, -2, -1}));
+            if (x[i] > largest) {
+                largest = x[i];
+            }
+        }
+        return largest;
     }
 
     // TODO, leia massiivi kõigi elementide summa
-    public static int sum(int[] x){
-        return 0;
+    public static int sum(int[] x) {
+        int sum = 0;
+        for (int i = 0; i < x.length; i++) {
+            sum = sum + x[i];
+            //sum += i;
+        }
+        return sum;
     }
 
     // TODO trüki välja korrutustabel mis on x ühikut lai ja y ühikut kõrge
@@ -49,7 +94,12 @@ public class Lesson2b {
     // TODO 5 võrdle ridu. Kas on mingi seaduspärasus ridade vahel,
     // mis on ja mis võiks olla. Äkki tuleb mõni idee
     public static void multiplyTable(int x, int y) {
-
+        for (int j = 1; j <= y; j++) {
+            for (int i = 1; i <= x; i++) {
+                System.out.print(i * j + " ");
+            }
+            System.out.println();
+        }
     }
 
     // TODO
@@ -57,8 +107,29 @@ public class Lesson2b {
     // 0, 1, 1, 2, 3, 5, 8, 13, 21
     // Tagasta fibonacci jada n element. Võid eeldada, et n >= 0
     public static int fibonacci(int n) {
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        } else {
+            int a = 0;
+            int b = 1;
+            for (int i = 1; i < n; i++) {
+                int tmp = a;
+                a = b;
+                b = tmp + a;
+                //System.out.println(i);
+            }
+            return b;
+        }
 
-        return 0;
+//        if (n == 0) {
+//            return 0;
+//        } else if (n==1){
+//            return 1;
+//        } else {
+//            return fibonacci(n-2)+fibonacci(n-1);
+//        }
     }
 
     // TODO

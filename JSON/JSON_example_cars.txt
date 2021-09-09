@@ -1,0 +1,46 @@
+{
+	"listOfClients": [{
+			"name": "Jack",
+			"age": 30,
+			"adress": "Uus 8",
+			"carsList": [{
+					"carNumber": "123ABC",
+					"carBrand": "VW"
+				},
+				{
+					"carNumber": "456QWE",
+					"carBrand": "Audi"
+				}
+			]
+		},
+		{
+			"name": "Poppi",
+			"age": 26,
+			"adress": "Tatari 10",
+			"carsList": [{
+					"carNumber": "321BHF",
+					"carBrand": "Skoda"
+				},
+				{
+					"carNumber": "587OPA",
+					"carBrand": "BNW"
+				}
+			]
+		},
+		{
+			"name": "Marta",
+			"age": 53,
+			"adress": "Suur-Karja 25",
+			"carsList": [{
+					"carNumber": "946HVF",
+					"carBrand": "Fiat"
+				},
+				{
+					"carNumber": "387ETA",
+					"carBrand": "Ford"
+				}
+			]
+		}
+	]
+
+}

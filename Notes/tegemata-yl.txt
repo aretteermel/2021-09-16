@@ -1,0 +1,19 @@
+Tegemata harjutused:
+
+		Lesson2b sequence3n		-> see oli sama mis Lesson2c aga ühes tükis
+TEHTUD		Lesson3 sort
+TEHTUD		Lesson3 evenFibonacci
+		Lesson3 morseCode
+TEHTUD		Lesson 4 TODO 5
+TEHTUD		Lesson3Controller sort
+TEHTUD		Lesson3Controller evenFibonacci
+		Lesson3Controller morseCode
+TEHTUD juhuu	Lesson4Controller
+		
+		BankService account status - ära lase teha tehteid, kui konto on lukus
+
+listi kuvamine RowMapper, nt TestController - sql-test4
+
+lesson3hardb - kirjuta ümber nii, et programm petaks sind - ei genereeri random numbrit vaid valib alati suurema vahemiku arvamiseks,
+nt kui 1-10 ja valid 3, siis ta ütleb et su number on liiga väike (4-10 on suurem vahemik kui 1-2), kui valid nüüd 8, siis ta ütleb et su
+number on liiga suur (4-7 vahemik on suurem kui 9-10).

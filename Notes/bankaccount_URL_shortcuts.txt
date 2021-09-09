@@ -1,0 +1,5 @@
+http://localhost:8080/lesson4controller/createaccount?accountnr=EE123
+http://localhost:8080/lesson4controller/getbalance?accountnr=EE123
+http://localhost:8080/lesson4controller/depositmoney?accountnr=EE123&amount=100
+http://localhost:8080/lesson4controller/withdrawmoney?accountnr=EE123&amount=100
+http://localhost:8080/lesson4controller/transfer?fromaccount=EE123&toaccount=EE456&amount=100

@@ -23,14 +23,57 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="2020-01-26 add employee" author="Siim Rebane">
+    
+    <changeSet id="2021-09-07 add employee" author="Arette Ermel">
         <createTable tableName="employee">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="text"/>
             <column name="address" type="text"/>
-            <column name="phone" type="text"/>
         </createTable>
     </changeSet>
+    
+    <changeSet id="2021-09-07 add bankaccount" author="Arette Ermel">
+        <createTable tableName="customer">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="text"/>
+            <column name="last_name" type="text"/>
+        </createTable>
+
+        <createTable tableName="bank_account">
+            <column name="account_id" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="balance" type="int"/>
+            <column name="status" type="text"/>
+            <column name="customer_id" type="int">
+                <constraints foreignKeyName="fk_bank_account_customer" references="customer(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2021-09-07 add customer address" author="Arette Ermel">
+        <addColumn tableName="customer">
+            <column name="address" type="text"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="2021-09-08 add transaction log" author="Arette Ermel">
+        <createTable tableName="transaction_log">
+            <column name="log_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="account_id" type="text">
+                <constraints foreignKeyName="fk_transaction_log_bank_account" references="bank_account(account_id)"/>
+            </column>
+            <column name="timestamp" type="timestamp"/>
+            <column name="amount" type="int"/>
+            <column name="action" type="text"/>
+            <column name="connected_account_id" type="text"/>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
