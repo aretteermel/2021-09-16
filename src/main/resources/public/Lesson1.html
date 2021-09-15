@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson1</title>
+</head>
+<body>
+<input placeholder="a" id="minA">
+<input placeholder="b" id="minB">
+<button id="minButton">Minimum</button>
+<input disabled id="minAnswer">
+<script>
+    let minButton = document.getElementById("minButton");
+    minButton.onclick = function () {
+        let a = document.getElementById("minA").value;
+        let b = document.getElementById("minB").value;
+        if (Number(a) < Number(b)) {
+            document.getElementById("minAnswer").value = a;
+        } else {
+            document.getElementById("minAnswer").value = b;
+        }
+
+    }
+</script>
+</body>
+
+<br>
+<br>
+
+<body>
+<input placeholder="a" id="maxA">
+<input placeholder="b" id="maxB">
+<button id="maxButton">Maximum</button>
+<input disabled id="maxAnswer">
+<script>
+    let maxButton = document.getElementById("maxButton");
+    maxButton.onclick = function () {
+        let a = document.getElementById("maxA").value;
+        let b = document.getElementById("maxB").value;
+        if (Number(a) > Number(b)) {
+            document.getElementById("maxAnswer").value = a;
+        } else {
+            document.getElementById("maxAnswer").value = b;
+        }
+
+    }
+</script>
+</body>
+
+<br>
+<br>
+
+<body>
+<input placeholder="a" id="absA">
+<button id="absButton">Absolute</button>
+<input disabled id="absAnswer">
+<script>
+    let absButton = document.getElementById("absButton");
+    absButton.onclick = function () {
+        let a = document.getElementById("absA").value;
+        if (Number(a) < Number(0)) {
+            document.getElementById("absAnswer").value = a * -1;
+        } else {
+            document.getElementById("absAnswer").value = a;
+        }
+
+    }
+</script>
+</body>
+
+<br>
+<br>
+
+<body>
+<input placeholder="a" id="isEvenA">
+<button id="isEvenButton">Is even number</button>
+<input disabled id="isEvenAnswer">
+<script>
+    let isEvenButton = document.getElementById("isEvenButton");
+    isEvenButton.onclick = function () {
+        let a = document.getElementById("isEvenA").value;
+        if (Number(a) % 2 == Number(0)) {
+            document.getElementById("isEvenAnswer").value = true;
+        } else {
+            document.getElementById("isEvenAnswer").value = false;
+        }
+
+    }
+</script>
+</body>
+
+<br>
+<br>
+
+<body>
+<input placeholder="a" id="min3A">
+<input placeholder="b" id="min3B">
+<input placeholder="c" id="min3C">
+<button id="min3Button">Minimum of 3</button>
+<input disabled id="min3Answer">
+<script>
+    let min3Button = document.getElementById("min3Button");
+    min3Button.onclick = function () {
+        let a = document.getElementById("min3A").value;
+        let b = document.getElementById("min3B").value;
+        let c = document.getElementById("min3C").value;
+        if (Number(a) <= Number(b) && Number(a) <= Number(c)) {
+            document.getElementById("min3Answer").value = a;
+        } else if (Number(b) <= Number(a) && Number(b) <= Number(c)) {
+            document.getElementById("min3Answer").value = b;
+        } else {
+            document.getElementById("min3Answer").value = c;
+        }
+    }
+</script>
+</body>
+
+<br>
+<br>
+
+<body>
+<input placeholder="a" id="max3A">
+<input placeholder="b" id="max3B">
+<input placeholder="c" id="max3C">
+<button id="max3Button">Maximum of 3</button>
+<input disabled id="max3Answer">
+<script>
+    let max3Button = document.getElementById("max3Button");
+    max3Button.onclick = function () {
+        let a = document.getElementById("max3A").value;
+        let b = document.getElementById("max3B").value;
+        let c = document.getElementById("max3C").value;
+        if (Number(a) >= Number(b) && Number(a) >= Number(c)) {
+            document.getElementById("max3Answer").value = a;
+        } else if (Number(b) >= Number(a) && Number(b) >= Number(c)) {
+            document.getElementById("max3Answer").value = b;
+        } else {
+            document.getElementById("max3Answer").value = c;
+        }
+    }
+</script>
+</body>
+
+<br>
+<br>
+
+<body>
+<input placeholder="n" id="fibN">
+<button id="fibNButton">Fibbonacci Nth element</button>
+<input disabled id="fibNAnswer">
+<script>
+    let fibNButton = document.getElementById("fibNButton");
+    fibNButton.onclick = function () {
+        let n = document.getElementById("fibN").value;
+        if (n == 0) {
+            document.getElementById("fibNAnswer").value = 0;
+        } else if (n == 1) {
+            document.getElementById("fibNAnswer").value = 1;
+        } else {
+            let a = 0;
+            let b = 1;
+            for (let i = 1; i < n; i++) {
+                let tmp = a;
+                a = b;
+                b = tmp + a;
+            }
+            document.getElementById("fibNAnswer").value = b;
+        }
+    }
+</script>
+</body>
+
+</html>

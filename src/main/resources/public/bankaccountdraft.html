@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--http://localhost:8080/bankaccountdraft.html-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BANK</title>
+</head>
+<body>
+<h1>BANK</h1>
+
+
+<h3>Add new customer</h3>
+<input id="firstName" placeholder="first name">
+<input id="lastName" placeholder="last name">
+<input id="address" placeholder="address">
+<button id="sendNewCustomer">
+    OK
+</button>
+<script>
+    let firstName = document.getElementById("firstName");
+    let lastName = document.getElementById("lastName");
+    let address = document.getElementById("address");
+
+    let sendNewCustomer = document.getElementById("sendNewCustomer");
+    sendNewCustomer.onclick = function () {
+        let customer = {
+            firstName: firstName.value,
+            lastName: lastName.value,
+            address: address.value
+        }
+        fetch("/bankaccountcontroller/addcustomer",
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(customer)
+            }
+        ).then(result => result.text())
+            .then(function (result) {
+                alert("New customer is added")
+            })
+    };
+</script>
+
+
+<h3>Create new account</h3>
+<input id="newAccount" placeholder="account number EE***">
+<input id="customerId" placeholder="customer id">
+<button id="sendNewAccount">
+    OK
+</button>
+<script>
+    let newAccount = document.getElementById("newAccount");
+    let customerId = document.getElementById("customerId");
+
+    let sendNewAccount = document.getElementById("sendNewAccount");
+    sendNewAccount.onclick = function () {
+        fetch("/bankaccountcontroller/createaccount?accountnr=" + newAccount.value + "&customerid=" + customerId.value,
+            {
+                method: 'POST'
+            }).then(result => result.text())
+            .then(function (data) {
+                alert("New account is added")
+            })
+    };
+</script>
+
+
+<h3>Get balance</h3>
+<input id="accountNr1" placeholder="account number">
+<button id="fetchTest1">
+    OK
+</button>
+<!--<input id="fetchResult">-->
+<span id="fetchResult1"></span>
+<script>
+    let accountNr1 = document.getElementById("accountNr1");
+    let fetchButton1 = document.getElementById("fetchTest1");
+    fetchButton1.onclick = function () {
+        fetch("/bankaccountcontroller/getbalance?accountnr=" + accountNr1.value)
+            .then(result => result.text())
+            .then(function (data) {
+                console.log(data);
+                // let fetchResult = document.getElementById("fetchResult");
+                let fetchResult1 = document.getElementById("fetchResult1");
+                // fetchResult.value = data;
+                fetchResult1.innerText = data;
+            })
+    }
+</script>
+
+<h3>Get balance and status</h3>
+<input id="accountNr2" placeholder="account number">
+<button id="fetchTest2">
+    OK
+</button>
+<input id="balanceResult" placeholder="current balance">
+<!--<input id="statusResult" placeholder="current status">-->
+<script>
+    let accountNr2 = document.getElementById("accountNr2");
+    let fetchButton2 = document.getElementById("fetchTest2");
+    fetchButton2.onclick = function () {
+        fetch("/bankaccountcontroller/getbalanceandstatus?accountnr=" + accountNr2.value)
+            .then(result => result.json())
+            .then(function (data) {
+                console.log(data);
+                let balanceResult = document.getElementById("balanceResult");
+                balanceResult.value = JSON.stringify(data);
+                // balanceResult.value = data.accountBalance;
+                // let statusResult = document.getElementById("statusResult");
+                // statusResult.value = data.accountStatus;
+            })
+    }
+</script>
+
+<h3>Deposit money</h3>
+<input id="accountNrDeposit" placeholder="account number EE***">
+<input id="amountDeposit" placeholder="amount">
+<button id="depositMoney">
+    OK
+</button>
+<script>
+    let accountNrDeposit = document.getElementById("accountNrDeposit");
+    let amountDeposit = document.getElementById("amountDeposit");
+
+    let depositMoney = document.getElementById("depositMoney");
+    depositMoney.onclick = function () {
+        fetch("/bankaccountcontroller/depositmoney?accountnr=" + accountNrDeposit.value + "&amount=" + amountDeposit.value,
+            {
+                method: 'PUT'
+            }).then(result => result.text())
+            .then(function (result) {
+                alert(result)
+            })
+    };
+</script>
+
+<h3>Withdraw money</h3>
+<input id="accountNrWithdraw" placeholder="account number EE***">
+<input id="amountWithdraw" placeholder="amount">
+<button id="withdrawMoney">
+    OK
+</button>
+<script>
+    let accountNrWithdraw = document.getElementById("accountNrWithdraw");
+    let amountWithdraw = document.getElementById("amountWithdraw");
+
+    let withdrawMoney = document.getElementById("withdrawMoney");
+    withdrawMoney.onclick = function () {
+        fetch("/bankaccountcontroller/withdrawmoney?accountnr=" + accountNrWithdraw.value + "&amount=" + amountWithdraw.value,
+            {
+                method: 'PUT'
+            }).then(result => result.text())
+            .then(function (result) {
+                alert(result)
+            })
+    };
+</script>
+
+<h3>Transfer money</h3>
+<input id="fromAccountNr" placeholder="account number EE***">
+<input id="toAccountNr" placeholder="account number EE***">
+<input id="amountTransfer" placeholder="amount">
+<button id="transferMoney">
+    OK
+</button>
+<script>
+    let fromAccountNr = document.getElementById("fromAccountNr");
+    let toAccountNr = document.getElementById("toAccountNr");
+    let amountTransfer = document.getElementById("amountTransfer");
+
+    let transferMoney = document.getElementById("transferMoney");
+    transferMoney.onclick = function () {
+        fetch("/bankaccountcontroller/transfermoney?fromaccount=" + fromAccountNr.value + "&toaccount=" + toAccountNr.value + "&amount=" + amountTransfer.value,
+            {
+                method: 'PUT'
+            }).then(result => result.text())
+            .then(function (result) {
+                alert(result)
+            })
+    };
+</script>
+
+<h3>Update account status</h3>
+<input id="accountNrStatus" placeholder="account number EE***">
+<input id="accountStatus" placeholder="update status">
+<button id="updateStatus">
+    OK
+</button>
+<script>
+    let accountNrStatus = document.getElementById("accountNrStatus");
+    let accountStatus = document.getElementById("accountStatus");
+
+    let updateStatus = document.getElementById("updateStatus");
+    // http://localhost:8080/bankaccountcontroller/updatestatus?accountnr=EE111&status=unlocked
+    updateStatus.onclick = function () {
+        fetch("/bankaccountcontroller/updatestatus?accountnr=" + accountNrStatus.value + "&status=" + accountStatus.value,
+            {
+                method: 'PUT'
+            }).then(result => result.text())
+            .then(function (result) {
+                alert(result)
+            })
+    };
+</script>
+
+<h1>Listi kuvamis näide</h1>
+<input id="listSample1">
+<input id="listSample2">
+<button id="showListButton">kuva list</button>
+<button id="emptyListButton">kustuta</button>
+<table border="1" id="table-sample">
+    <tr>
+        <td>nimi</td>
+        <td>mingi muu info</td>
+    </tr>
+</table>
+<script>
+    let showListButton = document.getElementById("showListButton");
+    let listSample1 = document.getElementById("listSample1");
+    let listSample2 = document.getElementById("listSample2");
+    showListButton.onclick = function () {
+        let newRow = document.createElement("tr")
+        let column1 = document.createElement("td")
+        column1.innerText = listSample1.value
+        let column2 = document.createElement("td")
+        column2.innerText = listSample2.value
+        newRow.appendChild(column1);
+        newRow.appendChild(column2);
+        let table = document.getElementById("table-sample")
+        table.appendChild(newRow)
+    }
+    let emptyListButton = document.getElementById("emptyListButton")
+    emptyListButton.onclick = function () {
+        let table = document.getElementById("table-sample")
+        table.innerHTML = ''
+    };
+</script>
+
+</body>
+</html>

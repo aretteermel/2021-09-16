@@ -28,13 +28,13 @@ public class BankAccountService {
         return accountRepository.addCustomer(firstName, lastName, address);
     }
 
-//    public String getBalance(String accountNr) {
-//        Integer currentBalance = accountRepository.currentBalance(accountNr);
-//        return accountNr + " balance is " + currentBalance;
-//    }
+    public String getBalance(String accountNr) {
+        Integer currentBalance = accountRepository.currentBalance(accountNr);
+        return accountNr + " balance is " + currentBalance;
+    }
 
     public String depositMoney(String accountNr, Integer amount) {
-        BalanceAndStatusDto account = accountRepository.getAccountBalanceAndStatus(accountNr);
+        BalanceAndStatusDto account = accountRepository.geBalanceAndStatus(accountNr);
         String status = account.getAccountStatus();
         String qwerty = "locked";
         if (status.equals(qwerty)) {
@@ -51,7 +51,7 @@ public class BankAccountService {
     }
 
     public String withdrawmoney(String accountNr, Integer amount) {
-        BalanceAndStatusDto account = accountRepository.getAccountBalanceAndStatus(accountNr);
+        BalanceAndStatusDto account = accountRepository.geBalanceAndStatus(accountNr);
         String status = account.getAccountStatus();
         String qwerty = "locked";
         if (status.equals(qwerty)) {
@@ -67,8 +67,8 @@ public class BankAccountService {
     }
 
     public String transferMoney(String fromAccount, String toAccount, Integer amount) {
-        BalanceAndStatusDto accountFrom = accountRepository.getAccountBalanceAndStatus(fromAccount);
-        BalanceAndStatusDto accountTo = accountRepository.getAccountBalanceAndStatus(toAccount);
+        BalanceAndStatusDto accountFrom = accountRepository.geBalanceAndStatus(fromAccount);
+        BalanceAndStatusDto accountTo = accountRepository.geBalanceAndStatus(toAccount);
         String statusFrom = accountFrom.getAccountStatus();
         String statusTo = accountTo.getAccountStatus();
         Integer fromAccountCurrentBalance = accountFrom.getAccountBalance();
@@ -89,20 +89,20 @@ public class BankAccountService {
                 " & toAccountCurrentBalance is " + toAccountCurrentBalance + " & toAccountNewBalance " + toAccountNewBalance;
     }
 
-    public void updateAccountStatus(String accountNr, String status) {
-        accountRepository.newStatus(accountNr, status);
+    public void updateStatus(String accountNr, String status) {
+        accountRepository.updateStatus(accountNr, status);
     }
 
-    public List<BankAccountCustomerDto> customerList() {
-        return accountRepository.customerList();
+    public List<BankAccountCustomerDto> allAccountsList() {
+        return accountRepository.allAccountsList();
     }
 
     public List<CustomerAllAccountsDto> getCustomerAllAccounts(Integer id) {
         return accountRepository.getCustomerAllAccounts(id);
     }
 
-    public BalanceAndStatusDto getAccountBalanceAndStatus(String accountNr) {
-        return accountRepository.getAccountBalanceAndStatus(accountNr);
+    public BalanceAndStatusDto geBalanceAndStatus(String accountNr) {
+        return accountRepository.geBalanceAndStatus(accountNr);
     }
 
     public List<TransactionLogDto> getTransactionLog(String accountNr) {

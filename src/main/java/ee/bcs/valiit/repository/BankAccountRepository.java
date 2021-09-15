@@ -26,7 +26,7 @@ public class BankAccountRepository {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public void createAccount(String accountNr, Integer customerId) {
-        String sql = "INSERT INTO bank_account (account_id, balance, customer_id)" + "VALUES (:accountNr, 0, :customerId)";
+        String sql = "INSERT INTO bank_account (account_id, balance, customer_id, status)" + "VALUES (:accountNr, 0, :customerId, 'unlocked')";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("accountNr", accountNr);
         paramMap.put("customerId", customerId);
@@ -59,7 +59,7 @@ public class BankAccountRepository {
         jdbcTemplate.update(sql, paramMap);
     }
 
-    public void newStatus(String accountNr, String newStatus) {
+    public void updateStatus(String accountNr, String newStatus) {
         String sql = "UPDATE bank_account SET status = :newStatus WHERE account_id = :accountNr";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("accountNr", accountNr);
@@ -88,7 +88,7 @@ public class BankAccountRepository {
         }
     }
 
-    public List<BankAccountCustomerDto> customerList() {
+    public List<BankAccountCustomerDto> allAccountsList() {
         String sql = "SELECT * FROM bank_account ba JOIN customer c on ba.customer_id = c.id";
         Map<String, Object> paramMap = new HashMap<>();
         List<BankAccountCustomerDto> listOfAllCustomers = jdbcTemplate.query(sql, paramMap, new BankAccountCustomerDtoRowMapper());
@@ -125,7 +125,7 @@ public class BankAccountRepository {
         }
     }
 
-    public BalanceAndStatusDto getAccountBalanceAndStatus(String accountNr) {
+    public BalanceAndStatusDto geBalanceAndStatus(String accountNr) {
         String sql = "SELECT * FROM bank_account WHERE account_id = :accountNr";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("accountNr", accountNr);
@@ -142,6 +142,7 @@ public class BankAccountRepository {
             result.setAmount(resultSet.getInt("amount"));
             result.setAction(resultSet.getString("action"));
             result.setConnectedAccountId(resultSet.getString("connected_account_id"));
+            result.setTimestamp(resultSet.getObject("timestamp", LocalDateTime.class));
             return result;
         }
     }

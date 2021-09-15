@@ -13,28 +13,28 @@ public class BankAccountController {
     @Autowired
     private BankAccountService bankAccountService;
 
-    // http://localhost:8080/bankaccountcontroller/createaccount?accountnr=EE111&customerid=1
-    @PostMapping("bankaccountcontroller/createaccount")
-    public String createAccount(@RequestParam("accountnr") String accountNr, @RequestParam("customerid") Integer customerId) {
-        return bankAccountService.createAccount(accountNr, customerId);
-    }
-
     // http://localhost:8080/bankaccountcontroller/addcustomer
     @PostMapping("bankaccountcontroller/addcustomer")
     public Integer addCustomer(@RequestBody CustomerDto x) {
         return bankAccountService.addCustomer(x.getFirstName(), x.getLastName(), x.getAddress());
     }
 
-//    // http://localhost:8080/bankaccountcontroller/getbalance?accountnr=EE111
-//    @GetMapping("bankaccountcontroller/getbalance")
-//    public String getBalance(@RequestParam("accountnr") String accountNr) {
-//        return bankAccountService.getBalance(accountNr);
-//    }
+    // http://localhost:8080/bankaccountcontroller/createaccount?accountnr=EE111&customerid=1
+    @PostMapping("bankaccountcontroller/createaccount")
+    public String createAccount(@RequestParam("accountnr") String accountNr, @RequestParam("customerid") Integer customerId) {
+        return bankAccountService.createAccount(accountNr, customerId);
+    }
 
-    // http://localhost:8080/bankaccountcontroller/getaccountbalanceandstatus?accountnr=EE111
-    @GetMapping("bankaccountcontroller/getaccountbalanceandstatus")
-    public BalanceAndStatusDto getAccountBalanceAndStatus(@RequestParam("accountnr") String accountNr) {
-        return bankAccountService.getAccountBalanceAndStatus(accountNr);
+    // http://localhost:8080/bankaccountcontroller/getbalance?accountnr=EE111
+    @GetMapping("bankaccountcontroller/getbalance")
+    public String getBalance(@RequestParam("accountnr") String accountNr) {
+        return bankAccountService.getBalance(accountNr);
+    }
+
+    // http://localhost:8080/bankaccountcontroller/getbalanceandstatus?accountnr=EE111
+    @GetMapping("bankaccountcontroller/getbalanceandstatus")
+    public BalanceAndStatusDto geBalanceAndStatus(@RequestParam("accountnr") String accountNr) {
+        return bankAccountService.geBalanceAndStatus(accountNr);
     }
 
     // http://localhost:8080/bankaccountcontroller/depositmoney?accountnr=EE111&amount=100
@@ -55,16 +55,16 @@ public class BankAccountController {
         return bankAccountService.transferMoney(fromAccount, toAccount, amount);
     }
 
-    // http://localhost:8080/bankaccountcontroller/updateaccountstatus?accountnr=EE111&status=unlocked
-    @PutMapping("bankaccountcontroller/updateaccountstatus")
-    public void updateAccountStatus(@RequestParam("accountnr") String accountNr, @RequestParam("status") String status) {
-        bankAccountService.updateAccountStatus(accountNr, status);
+    // http://localhost:8080/bankaccountcontroller/updatestatus?accountnr=EE111&status=unlocked
+    @PutMapping("bankaccountcontroller/updatestatus")
+    public void updateStatus(@RequestParam("accountnr") String accountNr, @RequestParam("status") String status) {
+        bankAccountService.updateStatus(accountNr, status);
     }
 
-    // http://localhost:8080/bankaccountcontroller/customerlist
-    @GetMapping("bankaccountcontroller/customerlist")
-    public List<BankAccountCustomerDto> customerList() {
-        return bankAccountService.customerList();
+    // http://localhost:8080/bankaccountcontroller/allaccountslist
+    @GetMapping("bankaccountcontroller/allaccountslist")
+    public List<BankAccountCustomerDto> allAccountsList() {
+        return bankAccountService.allAccountsList();
     }
 
     // http://localhost:8080/bankaccountcontroller/getcustomerallaccounts?id=2

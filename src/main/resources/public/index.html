@@ -2,8 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<h1> This is a heading</h1>
+<p class="test">This is a paragraoh</p>
+
+<a href="http://www.google.com">link text</a>
+<table border = "1">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>8</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>1</td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+
+<h1>Listi kuvamis näide 1</h1>
+<input id="listSample1">
+<input id="listSample2">
+<button id="showListButton">kuva list</button>
+<button id="emptyListButton">kustuta</button>
+<table border="1" id="table-sample">
+<!--    <tr>-->
+<!--        <td>nimi</td>-->
+<!--        <td>mingi muu info</td>-->
+<!--    </tr>-->
+</table>
+<script>
+    let showListButton = document.getElementById("showListButton");
+    let listSample1 = document.getElementById("listSample1");
+    let listSample2 = document.getElementById("listSample2");
+    showListButton.onclick = function () {
+        let newRow = document.createElement("tr")
+        let column1 = document.createElement("td")
+        column1.innerText = listSample1.value
+        let column2 = document.createElement("td")
+        column2.innerText = listSample2.value
+        newRow.appendChild(column1);
+        newRow.appendChild(column2);
+        let table = document.getElementById("table-sample")
+        table.appendChild(newRow)
+    }
+    let emptyListButton = document.getElementById("emptyListButton")
+    emptyListButton.onclick = function () {
+        let table = document.getElementById("table-sample")
+        table.innerHTML =''
+    };
+</script>
+
+<h1>Korrutustabel</h1>
+<input id="x">
+<input id="y">
+<button id="generateTableButton">kuva korrutustabel</button>
+<button id="emptyTableButton">kustuta tabel</button>
+<table border="1" id="multiplyTable"> </table>
+<script>
+    let showTableButton = document.getElementById("generateTableButton")
+    let listSample3 = document.getElementById("x")
+    let listSample4 = document.getElementById("y")
+    showTableButton.onclick = function () {
+        let table = document.getElementById("multiplyTable")
+        let x = document.getElementById("x").value
+        let y = document.getElementById("y").value
+        //TODO for tsükkel 1 -> y for tsükli sees pane tööle allolev kood
+        for (let j = 1; j <= y; j++) {
+            //TODO loo uus rida
+            let newRow = document.createElement("tr")
+            //TODO appendi rida tabeli külge
+            table.appendChild(newRow)
+            for (let i = 1; i <= Number(x); i++) {
+                console.log(i);
+                ///TODO loo tulp
+                let newColumn = document.createElement('td')
+                //TODO loo appendi tulp rea külga
+                newRow.appendChild(newColumn)
+                //TODO väärtusta tulba innerTextiks i
+                newColumn.innerText = i * j
+            }
+        }
+    }
+    let emptyTableButton = document.getElementById("emptyTableButton")
+    emptyTableButton.onclick = function () {
+        let table = document.getElementById("multiplyTable")
+        table.innerHTML =''
+    };
+</script>
+<br>
+<br>
+<!--<button id="newButton">Lae andmed (sql-test4)</button>-->
+<table id="sampleTable"></table>
+<script>
+    // let newButton = document.getElementById("newButton")
+    let sampleTable = document.getElementById("sampleTable")
+    // newButton.onclick = function() {
+        fetch('sql-test4')
+        .then(result => result.json())
+        .then(function(data) {
+            for(let i = 0; i < data.length; i++) {
+                let htmlRow = document.createElement("tr")
+                sampleTable.appendChild(htmlRow)
+                let idColumn = document.createElement("td")
+                let nameColumn = document.createElement("td")
+                let addressColumn =document.createElement("td")
+                htmlRow.appendChild(idColumn)
+                htmlRow.appendChild(nameColumn)
+                htmlRow.appendChild(addressColumn)
+                idColumn.innerText = data[i].id
+                nameColumn.innerText = data[i].name
+                addressColumn.innerText = data[i].address
+            }
+        })
+    // }
+</script>
+
 </body>
 </html>
