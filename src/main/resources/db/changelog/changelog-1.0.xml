@@ -23,7 +23,7 @@
             </column>
         </createTable>
     </changeSet>
-    
+
     <changeSet id="2021-09-07 add employee" author="Arette Ermel">
         <createTable tableName="employee">
             <column name="id" type="int" autoIncrement="true">
@@ -33,7 +33,7 @@
             <column name="address" type="text"/>
         </createTable>
     </changeSet>
-    
+
     <changeSet id="2021-09-07 add bankaccount" author="Arette Ermel">
         <createTable tableName="customer">
             <column name="id" type="int" autoIncrement="true">
@@ -60,7 +60,7 @@
             <column name="address" type="text"/>
         </addColumn>
     </changeSet>
-    
+
     <changeSet id="2021-09-08 add transaction log" author="Arette Ermel">
         <createTable tableName="transaction_log">
             <column name="log_id" type="int" autoIncrement="true">
@@ -75,5 +75,15 @@
             <column name="connected_account_id" type="text"/>
         </createTable>
     </changeSet>
+
+<!--    <changeSet id="2021-09-16 deleteCascade" author="Arette Ermel">-->
+<!--        <dropAllForeignKeyConstraints baseTableName="bank_account"/>-->
+<!--        <addForeignKeyConstraint baseTableName=""-->
+<!--                                 baseColumnNames=""-->
+<!--                                 constraintName=""-->
+<!--                                 referencedTableName=""-->
+<!--                                 referencedColumnNames=""-->
+<!--                                 deleteCascade="true"/>-->
+<!--    </changeSet>-->
 
 </databaseChangeLog>

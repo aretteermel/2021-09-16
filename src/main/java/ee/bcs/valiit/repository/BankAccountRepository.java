@@ -1,9 +1,6 @@
 package ee.bcs.valiit.repository;
 
-import ee.bcs.valiit.controller.model.BalanceAndStatusDto;
-import ee.bcs.valiit.controller.model.BankAccountCustomerDto;
-import ee.bcs.valiit.controller.model.CustomerAllAccountsDto;
-import ee.bcs.valiit.controller.model.TransactionLogDto;
+import ee.bcs.valiit.controller.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -95,6 +92,26 @@ public class BankAccountRepository {
         return listOfAllCustomers;
     }
 
+    public static class AllCustomersListDtoRowMapper implements RowMapper<AllCustomersListDto> {
+
+        @Override
+        public AllCustomersListDto mapRow(ResultSet resultSet, int i) throws SQLException {
+            AllCustomersListDto result = new AllCustomersListDto();
+            result.setId(resultSet.getInt("id"));
+            result.setFirstName(resultSet.getString("first_name"));
+            result.setLastName(resultSet.getString("last_name"));
+            result.setAddress(resultSet.getString("address"));
+            return result;
+        }
+    }
+
+    public List<AllCustomersListDto> allCustomersList() {
+        String sql = "SELECT * FROM customer";
+        Map<String, Object> paramMap = new HashMap<>();
+        List<AllCustomersListDto> allCustomers = jdbcTemplate.query(sql, paramMap, new AllCustomersListDtoRowMapper());
+        return allCustomers;
+    }
+
     public static class CustomerAllAccountsDtoRowMapper implements RowMapper<CustomerAllAccountsDto> {
 
         @Override
@@ -167,6 +184,13 @@ public class BankAccountRepository {
         paramMap.put("accountNr", accountNr);
         List<TransactionLogDto> vastus = jdbcTemplate.query(sql, paramMap, new TransactionLogDtoRowMapper());
         return vastus;
+    }
+
+    public void deleteCustomer(Integer id) {
+        String sql = "DELETE FROM customer WHERE id = :id";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("id", id);
+        jdbcTemplate.update(sql, paramMap);
     }
 
 }

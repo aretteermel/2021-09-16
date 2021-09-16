@@ -67,6 +67,12 @@ public class BankAccountController {
         return bankAccountService.allAccountsList();
     }
 
+    // http://localhost:8080/bankaccountcontroller/allcustomerslist
+    @GetMapping("bankaccountcontroller/allcustomerslist")
+    public List<AllCustomersListDto> allCustomersList() {
+        return bankAccountService.allCustomersList();
+    }
+
     // http://localhost:8080/bankaccountcontroller/getcustomerallaccounts?id=2
     @GetMapping("bankaccountcontroller/getcustomerallaccounts")
     public List<CustomerAllAccountsDto> getCustomerAllAccounts(@RequestParam("id") Integer id) {
@@ -77,6 +83,12 @@ public class BankAccountController {
     @GetMapping("bankaccountcontroller/gettransactionlog")
     public List<TransactionLogDto> getTransactionLog(@RequestParam("accountnr") String accountNr) {
         return bankAccountService.getTransactionLog(accountNr);
+    }
+
+    // http://localhost:8080/bankaccountcontroller/deletecustomer/5
+    @DeleteMapping("bankaccountcontroller/deletecustomer/{id}")
+    public void deleteCustomer(@PathVariable ("id") int id) {
+        bankAccountService.deleteCustomer(id);
     }
 
 }

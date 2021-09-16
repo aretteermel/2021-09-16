@@ -1,9 +1,6 @@
 package ee.bcs.valiit.service;
 
-import ee.bcs.valiit.controller.model.BalanceAndStatusDto;
-import ee.bcs.valiit.controller.model.BankAccountCustomerDto;
-import ee.bcs.valiit.controller.model.CustomerAllAccountsDto;
-import ee.bcs.valiit.controller.model.TransactionLogDto;
+import ee.bcs.valiit.controller.model.*;
 import ee.bcs.valiit.exception.ApplicationException;
 import ee.bcs.valiit.repository.BankAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +94,10 @@ public class BankAccountService {
         return accountRepository.allAccountsList();
     }
 
+    public List<AllCustomersListDto> allCustomersList() {
+        return accountRepository.allCustomersList();
+    }
+
     public List<CustomerAllAccountsDto> getCustomerAllAccounts(Integer id) {
         return accountRepository.getCustomerAllAccounts(id);
     }
@@ -107,6 +108,10 @@ public class BankAccountService {
 
     public List<TransactionLogDto> getTransactionLog(String accountNr) {
         return accountRepository.getTransactionLog(accountNr);
+    }
+
+    public void deleteCustomer(Integer id) {
+        accountRepository.deleteCustomer(id);
     }
 
 
